@@ -180,9 +180,13 @@ if $config[:output]
     bar = ProgressBar.new(res['hits']['total'])
     hit_list = ''
     total_lines = 0 if $debug
+    hit_list += "Timestamp" + "," + "Source Host" + "," + "Log Type" + "," + "Log Message" + "\n"
+    flush_to_file hit_list
+    hit_list = ''
+
     while true
         res['hits']['hits'].each do |hit|
-            hit_list += hit['_source']['message']
+            hit_list += hit['_source']['@timestamp'] + "," + hit['_source']['host'] + "," + hit['_source']['type']+ "," + hit['_source']['message'] + "\n"
             if hit_list.lines.count % $flush_buffer == 0
                 flush_to_file hit_list
                 hit_list = ''
