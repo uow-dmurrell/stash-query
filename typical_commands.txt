@@ -1,0 +1,2 @@
+#note time is in GMT.
+stash-query/bin/stash-query -d -c host.example.com -s 2014-01-11T11:00:00.000Z -e 2014-01-11T11:00:00.000Z -q "192.168.1.2" -w output.csv
